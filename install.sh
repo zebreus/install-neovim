@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 NIXSTART=$(date +%s.%N)
 nix-env -iA nixpkgs.neovim
