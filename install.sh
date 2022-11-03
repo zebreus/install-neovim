@@ -1,8 +1,14 @@
 #!/usr/bin/env bash
 
-TMPDIR=$(mktemp -d)
-CURRENT=$PWD
-cd $TMPDIR
+cd $(mktemp -d)
+
+curl -LO "https://github.com/neovim/neovim/releases/${${NEOVIM_VERSION:+download/$NEOVIM_VERSION}:-latest/download}/nvim.appimage"
+chmod u+x nvim.appimage
+./nvim.appimage --appimage-extract >/dev/null
+mkdir -p /home/gitpod/.local/bin
+ln -s $(pwd)/squashfs-root/AppRun /home/gitpod/.local/bin/nvim
+
+# Benchmarking different ways of installing nvim
 
 # NIXSTART=$(date +%s.%N)
 # source $HOME/.profile
@@ -22,11 +28,11 @@ cd $TMPDIR
 
 
 # APPIMAGESTART=$(date +%s.%N)
-curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
-chmod u+x nvim.appimage
-./nvim.appimage --appimage-extract >/dev/null
-mkdir -p /home/gitpod/.local/bin
-ln -s $(pwd)/squashfs-root/AppRun /home/gitpod/.local/bin/nvim
+# curl -LO "https://github.com/neovim/neovim/releases/${${NVIM_VERSION:+download/$NVIM_VERSION}:-latest/download}/nvim.appimage"
+# chmod u+x nvim.appimage
+# ./nvim.appimage --appimage-extract >/dev/null
+# mkdir -p /home/gitpod/.local/bin
+# ln -s $(pwd)/squashfs-root/AppRun /home/gitpod/.local/bin/nvim
 # APPIMAGEEND=$(date +%s.%N)
 # APPIMAGEDIFF=$(echo "$APPIMAGEEND - $APPIMAGESTART" | bc)
 # echo "Install as appimage took $APPIMAGEDIFF" 1>&2
