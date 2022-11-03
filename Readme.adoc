@@ -1,0 +1,3 @@
+# My gitpod dotfiles
+
+Currently it only installs neovim
