@@ -1,6 +1,6 @@
 # Install neovim in gitpod
 
-Just set `https://<i></i>github.com/Zebreus/install-neovim` as the source for your Dotfiles in your [gitpod.io/preferences](https://gitpod.io/preferences).
+Just set `https://github.com/Zebreus/install-neovim` as the source for your Dotfiles in your [gitpod.io/preferences](https://gitpod.io/preferences).
 
 # How does it work
 
