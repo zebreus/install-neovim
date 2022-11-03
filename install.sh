@@ -2,7 +2,13 @@
 
 cd $(mktemp -d)
 
-curl -LO "https://github.com/neovim/neovim/releases/${${NEOVIM_VERSION:+download/$NEOVIM_VERSION}:-latest/download}/nvim.appimage"
+URL="https://github.com/neovim/neovim/releases/latest/download/nvim.appimage"
+if test -n "$NEOVIM_VERSION"
+then
+    URL="https://github.com/neovim/neovim/releases/download/$NEOVIM_VERSION/nvim.appimage"
+fi
+
+curl -LO "$URL"
 chmod u+x nvim.appimage
 ./nvim.appimage --appimage-extract >/dev/null
 mkdir -p /home/gitpod/.local/bin
